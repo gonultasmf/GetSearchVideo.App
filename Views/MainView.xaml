@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="GetSearchVideo.Views.MainView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:GetSearchVideo.ViewModels"
+    Title="MainView"
+    BackgroundColor="{DynamicResource White}">
+
+
+    <Grid RowDefinitions=".1*,*">
+
+        <Grid ColumnDefinitions=".9*,.1*">
+
+            <Entry
+                Grid.ColumnSpan="2"
+                Margin="5,0"
+                BackgroundColor="Transparent"
+                HeightRequest="50"
+                HorizontalOptions="FillAndExpand"
+                Placeholder="Arama Yap..."
+                PlaceholderColor="Black"
+                Text="{Binding SearchText}" />
+
+            <ImageButton
+                Grid.Column="1"
+                Command="{Binding GetVideosCommand}"
+                HeightRequest="25"
+                HorizontalOptions="End"
+                Source="search.png" />
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+
+            <CollectionView ItemsSource="{Binding ListResult}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" ColumnDefinitions="auto,*">
+                            <Image
+                                Aspect="AspectFill"
+                                HeightRequest="60"
+                                Source="{Binding Image}"
+                                WidthRequest="90" />
+
+                            <Grid
+                                Grid.Column="1"
+                                RowDefinitions=".4*,.6*"
+                                RowSpacing="-20">
+
+                                <Label
+                                    Grid.Column="1"
+                                    Margin="5,0"
+                                    FlowDirection="LeftToRight"
+                                    FontSize="Medium"
+                                    HorizontalOptions="FillAndExpand"
+                                    LineBreakMode="TailTruncation"
+                                    Text="{Binding Title}" />
+
+                                <Grid
+                                    Grid.Row="1"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="1"
+                                    ColumnDefinitions=".33*,.33*,.33*">
+
+                                    <ImageButton
+                                        Grid.Column="0"
+                                        HeightRequest="25"
+                                        Source="play.png" />
+
+                                    <ImageButton
+                                        Grid.Column="1"
+                                        HeightRequest="25"
+                                        Source="download.png" />
+
+                                    <ImageButton
+                                        Grid.Column="2"
+                                        HeightRequest="25"
+                                        Source="diskette.png" />
+
+                                </Grid>
+
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+
+    </Grid>
+
+
+</ContentPage>
